@@ -1,13 +1,16 @@
-#include "../parser/parser.h"
 #include "vm.h"
+#include "../parser/parser.h"
 
 int main(int argc, char* argv[]) {
-    if (argc < 3) {
-        printf("invalid usage: <filepath> <data_cap>\n");
+    if (argc < 2) {
+        printf("invalid usage: <filepath> [...flags]\n");
         return 1;
     }
 
-    bytecode* bc = read_bytecode(argv[1]);
+    int parser_type = PARSE_TYPE_WORD;
+    size_t memsize = 512;
+
+    bytecode* bc = read_bytecode(argv[1], parser_type);
 
     if (!bc->code || bc->length == 0) {
         printf("err: invalid bytecode array.\n");
@@ -15,11 +18,10 @@ int main(int argc, char* argv[]) {
     }
 
     int entry = 0;
-    size_t data_cap = atoi(argv[2]);
-
-    vm_container* vm = vm_create(bc->code, bc->length, entry, data_cap);
+    vm_container* vm = vm_create(bc->code, bc->length, entry, memsize);
 
     vm_trace = FALSE;
+
     vm_run(vm);
 
     vm_destroy(vm);

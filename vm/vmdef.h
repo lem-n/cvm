@@ -1,5 +1,5 @@
-#ifndef VM_VM_DEF_H
-#define VM_VM_DEF_H
+#ifndef VM_VMDEF_H
+#define VM_VMDEF_H
 
 #include <stdlib.h>
 
@@ -24,4 +24,4 @@ typedef struct _vm_container {
     int frame_ptr;
 } vm_container;
 
-#endif // VM_VM_DEF_H
+#endif // VMVM_DEF_H

@@ -1,7 +1,7 @@
 #ifndef VM_INSTR_H
 #define VM_INSTR_H
 
-#include "vm_def.h"
+#include "vmdef.h"
 #include "safety.h"
 #include "flags.h"
 
@@ -15,7 +15,9 @@ void instr_gload(vm_container*);
 void instr_gstore(vm_container*);
 
 /* Prints value from top of stack to stdout. */
-void instr_print(vm_container*);
+void instr_iprint(vm_container*);
+
+void instr_cprint(vm_container*);
 
 /* Pops top two stack values and pushes their sum to the stack. */
 void instr_iadd(vm_container*);
@@ -29,17 +31,27 @@ void instr_imul(vm_container*);
 /* Pop top two stack values and pushes their quotient to the stack. */
 void instr_idiv(vm_container*);
 
+void instr_inc(vm_container*);
+
+void instr_dec(vm_container*);
+
+void instr_cmp(vm_container*);
+
 /* Pops the top of the stack. */
 void instr_pop(vm_container*);
 
 /* Jump to code address. */
 void instr_jmp(vm_container*);
 
-/* Jump to code address if top of stack is zero. */
 void instr_jmpz(vm_container*);
 
-/* Jump to code address if top of stack is not zero. */
 void instr_jmpnz(vm_container*);
 
+void instr_jmplt(vm_container*);
+
+void instr_jmpgt(vm_container*);
+
+/* Get a single character from stdin and push it to the top of the stack. */
+void instr_getc(vm_container*);
 
 #endif  // VM_INSTR_H

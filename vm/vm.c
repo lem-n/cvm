@@ -28,35 +28,40 @@ void vm_run(vm_container* vm) {
     while (vm->instr_ptr < vm->bytecode_size) {
         int opcode = vm->bytecode[vm->instr_ptr];
 
-        if (vm_trace) {
-            trace_op(opcode, vm->instr_ptr, vm->bytecode);
-            printf("\n");
-        }
-
         vm->instr_ptr++;
 
+        safe_check_instr_ptr(vm);
+        safe_check_stack_ptr(vm);
+
         switch (opcode) {
-            case OPCODE_ICONST: instr_iconst(vm); break;
-            case OPCODE_GLOAD:  instr_gload(vm); break;
-            case OPCODE_GSTORE: instr_gstore(vm); break;
-            case OPCODE_POP:    instr_pop(vm); break;
-            case OPCODE_IADD:   instr_iadd(vm); break;
-            case OPCODE_ISUB:   instr_isub(vm); break;
-            case OPCODE_IMUL:   instr_imul(vm); break;
-            case OPCODE_IDIV:   instr_idiv(vm); break;
-            case OPCODE_JMP:    instr_jmp(vm); break;
-            case OPCODE_JMPZ:   instr_jmpz(vm); break;
-            case OPCODE_JMPNZ:  instr_jmpnz(vm); break;
-            case OPCODE_PRINT:  instr_print(vm); break;
-            case OPCODE_HALT:   return;
+            case OP_HALT:   return;
+            case OP_NOOP:   break;
+            case OP_ICONST: instr_iconst(vm); break;
+            case OP_GLOAD:  instr_gload(vm); break;
+            case OP_GSTORE: instr_gstore(vm); break;
+            case OP_POP:    instr_pop(vm); break;
+            case OP_IADD:   instr_iadd(vm); break;
+            case OP_ISUB:   instr_isub(vm); break;
+            case OP_IMUL:   instr_imul(vm); break;
+            case OP_IDIV:   instr_idiv(vm); break;
+            case OP_INC:    instr_inc(vm); break;
+            case OP_DEC:    instr_dec(vm); break;
+            case OP_CMP:    instr_cmp(vm); break;
+            case OP_JMP:    instr_jmp(vm); break;
+            case OP_JMPZ:   instr_jmpz(vm); break;
+            case OP_JMPNZ:  instr_jmpnz(vm); break;
+            case OP_IPRINT: instr_iprint(vm); break;
+            case OP_CPRINT: instr_cprint(vm); break;
+            case OP_GETC:   instr_getc(vm); break;
             default: exit_error(vm, "Encountered unknown bytecode instruction."); return;
         }
 
         if (vm_trace) {
-            trace_stack(vm->stack, STACK_MAX_SIZE);
+            trace_op(vm, opcode);
+            trace_stack(vm);
             printf("\n");
-            trace_memory(vm->memory, vm->memory_size);
-            printf("\nIP: %d | SP: %d\n\n", vm->instr_ptr, vm->stack_ptr);
+            trace_memory(vm);
+            printf("\n\n");
         }
     }
 }

@@ -1,6 +1,15 @@
 #include "parser.h"
 
-bytecode* read_bytecode(char* filepath) {
+int parse_opcode(char* buffer) {
+    for (int i = 0; i < BYTECODE_COUNT; ++i) {
+        if (strcicmp(buffer, opcodes[i].opname) == 0) {
+            return opcodes[i].opcode;
+        }
+    }
+    return -1;
+}
+
+bytecode* read_bytecode(char* filepath, int parser_type) {
     FILE* fp;
     char line[128];
     long file_len;
@@ -39,8 +48,31 @@ bytecode* read_bytecode(char* filepath) {
                 }
             }
 
-            int value = strtol(pch, NULL, 16);
-            bc->code[i++] = value;
+            // make copy of string and remove potential whitespace
+            char* str = malloc(toklen + 1);
+            strncpy(str, pch, toklen + 1);
+            strwsrm(str);
+
+            int value;
+
+            if (*str) {
+                value = parse_opcode(str);
+
+                if (value == -1) {
+                    if (parser_type == PARSE_TYPE_WORD)
+                        value = strtol(str, NULL, 10);
+                    else if (parser_type == PARSE_TYPE_HEX)
+                        value = strtol(str, NULL, 16);
+                    else {
+                        fprintf(stderr, "Invalid parsing type provided.\n");
+                        exit(1);
+                    }
+                }
+
+                bc->code[i++] = value;
+            }
+
+            free(str);
             pch = strtok(NULL, " ");
         }
     }

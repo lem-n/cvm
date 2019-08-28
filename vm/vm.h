@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "vm_def.h"
+#include "vmdef.h"
 #include "bytecode.h"
 #include "trace.h"
 #include "instr.h"

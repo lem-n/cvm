@@ -3,11 +3,12 @@
 
 #include <stdio.h>
 #include "bytecode.h"
+#include "vmdef.h"
 
-void trace_op(int, int, int[]);
+void trace_op(vm_container*, int);
 
-void trace_stack(int[], size_t);
+void trace_stack(vm_container*);
 
-void trace_memory(int[], size_t);
+void trace_memory(vm_container*);
 
 #endif  // VM_TRACE_H
