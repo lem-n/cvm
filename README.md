@@ -6,7 +6,7 @@ Example printing 110 by adding 99 and 11 to the console.
 iconst 11
 iconst 99
 iadd
-print
+iprint
 halt
 ```
 
