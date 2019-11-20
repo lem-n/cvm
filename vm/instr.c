@@ -145,7 +145,10 @@ void instr_jmplt(vm_container* vm) {
 }
 
 void instr_jmpgt(vm_container* vm) {
+    int addr = vm->bytecode[vm->instr_ptr++];
 
+    if (vm->flags & FLAG_LESS)
+        vm->instr_ptr = addr;
 }
 
 void instr_getc(vm_container* vm) {

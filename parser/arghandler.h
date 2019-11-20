@@ -1,16 +1,19 @@
-#ifndef PARSER_ARG_HANDLER_H
-#define PARSER_ARG_HANDLER_H
+#ifndef PARSER_ARGHANDLER_H
+#define PARSER_ARGHANDLER_H
 
-#include "argparser.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#include "carg_parser.h"
 #include "parser.h"
 
-typedef struct _options {
-    int opt_source_type;
-    int opt_memsize;
-    int opt_trace;
-    int opt_output_hex;
-} options;
+typedef struct _arg_opts {
+    int show_trace;
+    int data_size;
+    enum parse_type type;
+} arg_opts;
 
-options parse_arguments(int argc, char* argv[]);
+const arg_opts args_parse(int argc, const char* const argv[]);
 
-#endif // PARSER_ARG_HANDLER_H
+#endif // PARSER_ARGHANDLER_H

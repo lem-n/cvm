@@ -19,6 +19,6 @@ typedef struct _bytecode {
 
 int parse_opcode(char*);
 
-bytecode* read_bytecode(char*, int);
+bytecode* read_bytecode(const char*, int);
 
 #endif // PARSER_PARSER_H

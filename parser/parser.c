@@ -9,7 +9,7 @@ int parse_opcode(char* buffer) {
     return -1;
 }
 
-bytecode* read_bytecode(char* filepath, int parser_type) {
+bytecode* read_bytecode(const char* filepath, int parser_type) {
     FILE* fp;
     char line[128];
     long file_len;

@@ -29,7 +29,7 @@ void vm_run(vm_container* vm) {
         int opcode = vm->bytecode[vm->instr_ptr];
 
         vm->instr_ptr++;
-
+ 
         safe_check_instr_ptr(vm);
         safe_check_stack_ptr(vm);
 

@@ -1,0 +1,5 @@
+iconst 5
+iconst 15
+isub
+iprint
+halt

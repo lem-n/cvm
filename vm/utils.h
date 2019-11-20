@@ -19,4 +19,6 @@ static void exit_error(vm_container* vm, const char* err_msg) {
     exit(EXIT_FAILURE);
 }
 
+
+
 #endif // VM_UTILS_H
