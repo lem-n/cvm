@@ -1,6 +1,6 @@
-#include "vm.h"
 #include "../parser/arghandler.h"
 #include "../parser/parser.h"
+#include "vm.h"
 
 int main(int argc, const char* const argv[]) {
     if (argc < 2) {
@@ -20,7 +20,7 @@ int main(int argc, const char* const argv[]) {
     int entry = 0;
     vm_container* vm = vm_create(bc->code, bc->length, entry, opts.data_size);
 
-    vm_trace = opts.show_trace;
+    vm->trace = opts.show_trace;
     vm_run(vm);
 
     vm_destroy(vm);

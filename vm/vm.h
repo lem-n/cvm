@@ -5,14 +5,11 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "vmdef.h"
 #include "bytecode.h"
-#include "trace.h"
 #include "instr.h"
+#include "trace.h"
 #include "utils.h"
-
-/* true for execution information to be printed. */
-int vm_trace;
+#include "vmdef.h"
 
 /* Create a new VM. */
 vm_container* vm_create(int[], size_t, int, size_t);
@@ -23,4 +20,4 @@ void vm_run(vm_container*);
 /* Free up memory used by VM. */
 void vm_destroy(vm_container*);
 
-#endif  // VM_VM_H
+#endif // VM_VM_H

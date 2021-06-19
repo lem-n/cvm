@@ -1,0 +1,9 @@
+BasedOnStyle: LLVM
+ColumnLimit: 100
+IndentWidth: 4
+AlignConsecutiveMacros: 'true'
+AlignTrailingComments: 'true'
+AlignOperands: 'true'
+IndentCaseLabels: 'true'
+DerivePointerAlignment: 'false'
+PointerAlignment: Left

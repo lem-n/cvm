@@ -3,14 +3,14 @@
 
 #include "vmdef.h"
 
-extern const unsigned char FLAG_SIGN;
 extern const unsigned char FLAG_CARRY;
 extern const unsigned char FLAG_ZERO;
+extern const unsigned char FLAG_SIGN;
 extern const unsigned char FLAG_OVERFLOW;
 
-const unsigned char FLAG_EQUAL;
-const unsigned char FLAG_GREATER;
-const unsigned char FLAG_LESS;
+extern const unsigned char FLAG_EQUAL;
+extern const unsigned char FLAG_GREATER;
+extern const unsigned char FLAG_LESS;
 
 /* Handle flag setting after arithmetic operation was done. */
 void handle_arithmetic_flags(vm_container*, int);

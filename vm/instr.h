@@ -1,9 +1,9 @@
 #ifndef VM_INSTR_H
 #define VM_INSTR_H
 
-#include "vmdef.h"
-#include "safety.h"
 #include "flags.h"
+#include "safety.h"
+#include "vmdef.h"
 
 /* Push integer to top of stack. */
 void instr_iconst(vm_container*);
@@ -54,4 +54,4 @@ void instr_jmpgt(vm_container*);
 /* Get a single character from stdin and push it to the top of the stack. */
 void instr_getc(vm_container*);
 
-#endif  // VM_INSTR_H
+#endif // VM_INSTR_H

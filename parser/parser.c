@@ -35,9 +35,13 @@ bytecode* read_bytecode(const char* filepath, int parser_type) {
     int i = 0;
     while (fgets(line, file_len, fp) != NULL) {
         pch = strtok(line, " ");
+
         while (pch != NULL) {
             size_t toklen = strlen(pch);
-            if (pch[toklen - 1] == '\n') pch[toklen - 1] = '\0';
+
+            if (pch[toklen - 1] == '\n') {
+                pch[toklen - 1] = '\0';
+            }
 
             if (bc->length <= i) {
                 bc->length += 12;
@@ -59,11 +63,12 @@ bytecode* read_bytecode(const char* filepath, int parser_type) {
                 value = parse_opcode(str);
 
                 if (value == -1) {
-                    if (parser_type == PARSE_TYPE_WORD)
+                    if (parser_type == PARSE_TYPE_WORD) {
                         value = strtol(str, NULL, 10);
-                    else if (parser_type == PARSE_TYPE_HEX)
+                    } else if (parser_type == PARSE_TYPE_HEX) {
+
                         value = strtol(str, NULL, 16);
-                    else {
+                    } else {
                         fprintf(stderr, "Invalid parsing type provided.\n");
                         exit(1);
                     }

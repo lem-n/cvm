@@ -1,16 +1,13 @@
 #ifndef PARSER_PARSER_H
 #define PARSER_PARSER_H
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
-#include "putils.h"
 #include "../vm/bytecode.h"
+#include "putils.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
-enum parse_type {
-    PARSE_TYPE_HEX,
-    PARSE_TYPE_WORD
-};
+enum parse_type { PARSE_TYPE_HEX, PARSE_TYPE_WORD };
 
 typedef struct _bytecode {
     int* code;

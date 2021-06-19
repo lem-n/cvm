@@ -4,12 +4,13 @@
 #include <stdlib.h>
 
 #define FALSE 0
-#define TRUE 1
+#define TRUE  1
 
 #define STACK_MAX_SIZE 128
 
 typedef struct _vm_container {
     unsigned char flags;
+    int trace;
 
     int* memory;
     size_t memory_size;
